@@ -1,5 +1,5 @@
 LATEX = pdflatex
-LATEXFLAGS =
+LATEXFLAGS = -halt-on-error
 
 SHOW = mupdf
 SHOWFLAGS =
