@@ -36,6 +36,24 @@
     citecolor=blue
 }
 
+% Title centered.
+%\renewcommand\maketitlehooka{\null\mbox{}\vspace{5cm}}
+%\renewcommand\maketitlehookd{\vfill\null}
+
+% Title left aligned.
+%\makeatletter
+%\renewcommand{\maketitle}{
+%    \bgroup\setlength{\parindent}{0pt}
+%    \begin{flushleft}
+%    \huge\textbf{\@title}
+%    \vspace*{0.2cm}
+%
+%    \large\@author\\
+%    \@date
+%    \end{flushleft}\egroup
+%}
+%\makeatother
+
 % New command to generate URL links and footers.
 \newcommand\fnurl[2]{
     \href{#2}{#1}\footnote{\url{#2}}
