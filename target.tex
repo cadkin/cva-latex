@@ -1,0 +1,84 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}   % Set margins.
+\usepackage{graphicx}               % Allows adding images to the document.
+\usepackage{float}                  % A positioning package for images, charts, and tables.
+\usepackage{listings}               % Useful for importing code snippets into reports.
+\usepackage{xcolor}                 % Colorize some text.
+\usepackage{caption}                % Caption directives.
+\usepackage{courier}                % Courier font.
+\usepackage{fancyhdr}               % Header.
+\usepackage{titling}                % Author info access.
+\usepackage{multirow}               % Multirow in tables.
+\usepackage{hyperref}               % Hyperlinks.
+\usepackage[bottom]{footmisc}       % Footnote at bottom.
+\usepackage{longtable}              % Multipage tables.
+\usepackage{titling}                % Title page.
+
+% No indent, space after paragraphs.
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+\renewcommand\arraystretch{1.5}
+
+% Header setup.
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thetitle}
+\lhead{Pg. \thepage}
+
+% URL setup.
+\definecolor{cerulean}{rgb}{0.0, 0.48, 0.65}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cerulean,
+    citecolor=blue
+}
+
+% New command to generate URL links and footers.
+\newcommand\fnurl[2]{
+    \href{#2}{#1}\footnote{\url{#2}}
+}
+
+% Fake item for lists in tables.
+\newcommand{\tabitem}{\textbullet \hspace{0.5em}}
+
+% Title Commands.
+\renewcommand\maketitlehooka{\null\mbox{}\vfill}
+\renewcommand\maketitlehookd{\vfill\null}
+
+% Language setup.
+\lstset{language=C,
+        frame=single,
+        basicstyle=\footnotesize\ttfamily,
+        breaklines=true,
+        postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+        keywordstyle=\color{blue}\bf,
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{darkgray},
+        tabsize=4,
+        numbers=left,
+        firstnumber=1}
+
+% Paper title and author.
+\title{The Title}
+\author{The Author}
+\date{\today}
+
+\begin{document}
+    \maketitle
+    \thispagestyle{empty}
+
+%   Example Figure:
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[width=\columnwidth]{p4.png}
+%            \caption{Reconstruction showing the individual interpolating sinc functions.}
+%        \end{figure}
+%
+%
+%   Example code listing:
+%        \lstinputlisting{lpiplot.m}
+
+\end{document}
