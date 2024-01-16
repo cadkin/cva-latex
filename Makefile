@@ -1,21 +1,25 @@
-LATEX = pdflatex
-LATEXFLAGS = -halt-on-error
+BUILD_DIR	:= build
 
-SHOW = mupdf
-SHOWFLAGS =
+LATEX 		:= pdflatex
+LATEXFLAGS 	:= -halt-on-error -output-directory=$(BUILD_DIR)
 
-SRC = target.tex
-TARGET = target
+SHOW 		:= zathura
+SHOWFLAGS 	:=
 
-all: latex
+DEPS		:= preamble.tex
+SRC 		:= target.tex
+TARGET 		:= target
 
-latex:
+all: $(BUILD_DIR)/$(TARGET).pdf
+
+$(BUILD_DIR)/$(TARGET).pdf: $(SRC) $(DEPS)
+	mkdir -p $(BUILD_DIR)
 	$(LATEX) $(LATEXFLAGS) -jobname="$(TARGET)" $(SRC)
 
-show: latex
-	$(SHOW) $(TARGET).pdf
+show: $(BUILD_DIR)/$(TARGET).pdf
+	$(SHOW) $(SHOWFLAGS) $(BUILD_DIR)/$(TARGET).pdf
 
 .PHONY: clean
 
 clean:
-	rm -rf $(TARGET).pdf $(TARGET).aux $(TARGET).log $(TARGET).out
+	rm -rf $(BUILD_DIR)

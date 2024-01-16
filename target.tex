@@ -1,80 +1,8 @@
 \documentclass{article}
 
-\usepackage[utf8]{inputenc}
-\usepackage[margin=1in]{geometry}   % Set margins.
-\usepackage{graphicx}               % Allows adding images to the document.
-\usepackage{float}                  % A positioning package for images, charts, and tables.
-\usepackage{listings}               % Useful for importing code snippets into reports.
-\usepackage{xcolor}                 % Colorize some text.
-\usepackage{caption}                % Caption directives.
-\usepackage{courier}                % Courier font.
-\usepackage{fancyhdr}               % Header.
-\usepackage{titling}                % Author info access.
-\usepackage{multirow}               % Multirow in tables.
-\usepackage{hyperref}               % Hyperlinks.
-\usepackage[bottom]{footmisc}       % Footnote at bottom.
-\usepackage{longtable}              % Multipage tables.
+\include{preamble.tex}
 
-% No indent, space after paragraphs.
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{1em}
-\renewcommand\arraystretch{1.5}
-
-% Header setup.
-\pagestyle{fancy}
-\fancyhf{}
-\rhead{\thetitle}
-\lhead{Pg. \thepage}
-
-% URL setup.
-\definecolor{cerulean}{rgb}{0.0, 0.48, 0.65}
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,
-    urlcolor=cerulean,
-    citecolor=blue
-}
-
-% Title centered.
-%\renewcommand\maketitlehooka{\null\mbox{}\vspace{5cm}}
-%\renewcommand\maketitlehookd{\vfill\null}
-
-% Title left aligned.
-%\makeatletter
-%\renewcommand{\maketitle}{
-%    \bgroup\setlength{\parindent}{0pt}
-%    \begin{flushleft}
-%    \huge\textbf{\@title}
-%    \vspace*{0.2cm}
-%
-%    \large\@author\\
-%    \@date
-%    \end{flushleft}\egroup
-%}
-%\makeatother
-
-% New command to generate URL links and footers.
-\newcommand\fnurl[2]{
-    \href{#2}{#1}\footnote{\url{#2}}
-}
-
-% Fake item for lists in tables.
-\newcommand{\tabitem}{\textbullet \hspace{0.5em}}
-
-% Language setup.
-\lstset{language=C,
-        frame=single,
-        basicstyle=\footnotesize\ttfamily,
-        breaklines=true,
-        postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
-        keywordstyle=\color{blue}\bf,
-        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{darkgray},
-        tabsize=4,
-        numbers=left,
-        firstnumber=1}
-
-% Paper title and author.
+% Author information
 \title{The Title}
 \author{The Author}
 \date{\today}
@@ -83,15 +11,59 @@
     \maketitle
     \thispagestyle{empty}
 
-%   Example Figure:
-%        \begin{figure}[H]
-%            \centering
-%            \includegraphics[width=\columnwidth]{p4.png}
-%            \caption{Reconstruction showing the individual interpolating sinc functions.}
-%        \end{figure}
-%
-%
-%   Example code listing:
-%        \lstinputlisting{lpiplot.m}
+    This is some example text to show how to use the template.
+
+    For writing mathematical equations, it is much easier to use:
+    \[
+    	\alpha\beta = \frac{dx}{dt}\gamma\Omega
+    \]
+
+    Figures can be added using the figure environment:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\columnwidth]{example-image-a}
+        \caption{Example caption for this figure.}
+    \end{figure}
+
+    Example code listing:
+    \begin{lstlisting}[gobble=8]
+        #pragma once
+
+        // C++
+        #include <vector>
+        #include <string>
+
+        // libfmt
+        #include <fmt/core.h>
+
+        namespace ornl::util {
+            template<
+                typename T,
+                typename return_t = std::vector<typename std::vector<T>::pointer>
+            >
+            return_t make_pointer_container(std::vector<T>& vector) {
+                return_t result;
+                for (T& element : vector) {
+                    result.push_back(&element);
+                }
+
+                return result;
+            }
+
+            void test_function() {
+                std::vector<std::string> strings = {"one", "two", "three"};
+                auto pointers = make_pointer_container(strings);
+
+                for (const auto& pointer : pointers) {
+                    fmt::print("{}: {}\n", pointer, *pointer);
+                }
+
+                fmt::print("This is a really long line that shows how the wrapping works using mbox hookarrow. This text should be on the next line, if it isn't that's bad.\n");
+            }
+
+        }
+    \end{lstlisting}
+
+    You can also include code from a file using \verb|\lstinputlisting{filename.ext}|.
 
 \end{document}

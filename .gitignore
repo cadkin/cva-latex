@@ -1,0 +1,9 @@
+*.aux
+*.log
+*.nav
+*.pdf
+*.snm
+*.toc
+
+# Build directory
+build/

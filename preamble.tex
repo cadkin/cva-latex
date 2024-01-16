@@ -1,0 +1,79 @@
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}   % Set margins.
+\usepackage{graphicx}               % Allows adding images to the document.
+\usepackage{float}                  % A positioning package for images, charts, and tables.
+\usepackage{listings}               % Useful for importing code snippets into reports.
+\usepackage{xcolor}                 % Colorize some text.
+\usepackage{caption}                % Caption directives.
+\usepackage{courier}                % Courier font.
+\usepackage{fancyhdr}               % Header.
+\usepackage{titling}                % Author info access.
+\usepackage{multirow}               % Multirow in tables.
+\usepackage{hyperref}               % Hyperlinks.
+\usepackage[bottom]{footmisc}       % Footnote at bottom.
+\usepackage{longtable}              % Multipage tables.
+% No indent, space after paragraphs.
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+\renewcommand\arraystretch{1.5}
+
+% Header setup.
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thetitle}
+\lhead{Pg. \thepage}
+
+% URL setup.
+\definecolor{cerulean}{rgb}{0.0, 0.48, 0.65}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cerulean,
+    citecolor=blue
+}
+
+% Title centered.
+%\renewcommand\maketitlehooka{\null\mbox{}\vspace{5cm}}
+%\renewcommand\maketitlehookd{\vfill\null}
+
+% Title left aligned.
+\makeatletter
+\renewcommand{\maketitle}{
+    \bgroup\setlength{\parindent}{0pt}
+    \begin{flushleft}
+    \huge\textbf{\@title}
+    \vspace*{0.2cm}
+
+    \large\@author\\
+    \@date
+    \end{flushleft}\egroup
+}
+\makeatother
+
+% New command to generate URL links and footers.
+\newcommand\fnurl[2]{
+    \href{#2}{#1}\footnote{\url{#2}}
+}
+
+% Fake item for lists in tables.
+\newcommand{\tabitem}{\textbullet \hspace{0.5em}}
+
+% Language setup.
+\lstset{
+    language=C++,
+    morekeywords={fmt, ornl, util, std, vector, string},
+    tabsize=4,
+    numbers=left,
+    firstnumber=1,
+    xleftmargin=2em,
+    frame=single,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{teal!50!black}\bf,
+    commentstyle=\color{gray},
+    numberstyle=\color{gray}\bf,
+    stringstyle=\color{purple}\bf,
+    breaklines=true,
+    postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+    backgroundcolor=\color{gray!5},
+}
